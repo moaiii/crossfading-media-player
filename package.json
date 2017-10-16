@@ -9,7 +9,8 @@
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "prepublish": "npm run build",
-    "release": "np"
+    "release": "np",
+    "flow": "flow"
   },
   "babel": {
     "presets": [
@@ -36,7 +37,9 @@
   "homepage": "https://github.com/moaiii/crossfading-media-player#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-latest": "^6.24.1",
+    "flow-bin": "^0.57.2",
     "jest": "^21.2.1",
     "np": "^2.16.0",
     "react-player": "^0.25.0",
