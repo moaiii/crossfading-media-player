@@ -1,0 +1,41 @@
+{
+  "name": "crossfading-media-player",
+  "version": "1.0.0",
+  "description": "Audio player which given a list of url's, can crossfade between each track",
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "watch 'npm run build' src",
+    "build": "babel src -d build",
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/moaiii/crossfading-media-player.git"
+  },
+  "keywords": [
+    "audio",
+    "player",
+    "crossfade",
+    "html5",
+    "player",
+    "react"
+  ],
+  "author": "Christopher Melville, Ambie.fm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moaiii/crossfading-media-player/issues"
+  },
+  "homepage": "https://github.com/moaiii/crossfading-media-player#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "jest": "^21.2.1",
+    "watch": "^1.0.2"
+  }
+}
