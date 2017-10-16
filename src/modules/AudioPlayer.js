@@ -6,7 +6,7 @@ class AudioPlayer {
   maxPlaybackDuration: number;
   fadeTime: number;
   isPlaying: boolean;
-  previewUrl: string;
+  previewUrl: any;
   volume: number;
   fadeSmoothness: number;
   
@@ -15,8 +15,8 @@ class AudioPlayer {
     this.elapsed = 0;
     this.maxPlaybackDuration = 30; 
     this.fadeTime = 3;
-    this.isPlaying = false;
-    this.previewUrl = '';
+    this.isPlaying = Boolean(false);
+    this.previewUrl = "";
     this.volume = 0;
     this.fadeSmoothness = 4;
   };
@@ -45,16 +45,20 @@ class AudioPlayer {
     }, fadeSmoothnessMilliseconds);
   };
 
-  
-  get isPlaying(): boolean {
+
+  get isPlaying(): any {
     return this.isPlaying;
   };
 
-  setIsPlaying(playing: boolean) {
+  get previewUrl(): any {
+    return this.previewUrl;
+  };
+
+  setIsPlaying(playing: any) {
     this.isPlaying = playing;
   };
 
-  setUrl(url: string) {
+  setUrl(url: any) {
     this.previewUrl = url;
   };
 

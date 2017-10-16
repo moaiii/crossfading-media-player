@@ -9,7 +9,7 @@ type Props = {};
 
 type State = {
   queue?: Array<string>,
-  players?: { string: AudioPlayer }
+  players?: { a: any, b: any }
 };
 
 
@@ -19,8 +19,11 @@ class CrossfadingMediaPlayer extends Component<Props, State> {
     super();
 
     this.state = {
-      queue: null,
-      players: null
+      queue: [],
+      players: {
+        "a": {},
+        "b": {}
+      }
     };
   };
 
@@ -31,13 +34,13 @@ class CrossfadingMediaPlayer extends Component<Props, State> {
   };
 
   componentWillMount() {
-    let players: { any: AudioPlayer } = {};
+    let players = {};
 
     let player_a: AudioPlayer = new AudioPlayer("a");
     let player_b: AudioPlayer = new AudioPlayer("b");
 
-    let players.a: AudioPlayer = player_a;
-    let players.b: AudioPlayer = player_b;
+    players.a = player_a;
+    players.b = player_b;
 
     this.setState({
       players: players
@@ -47,39 +50,52 @@ class CrossfadingMediaPlayer extends Component<Props, State> {
   /**
    * Check that the player is nearing the end of the preview 
    * if so, fade the volume down and bring in the other player
-   * @param {string} playerId 
+   * @param {string} playerName 
    */
-  handlePlayerDuration(playerId: string) {
+  handlePlayerDuration(playerName: string) {};
 
-  };
+  handlePlayerReady(playerName: string) {};
+
+  handlePlayerStart(playerName: string) {};
+
+  handlePlayerPlaying(playerName: string) {};
+
+  handlePlayerProgress(playerName: string) {};
+
+  handlePlayerPaused(playerName: string) {};
+
+  handlePlayerBuffering(playerName: string) {};
+
+  handlePlayerEnded(playerName: string) {};
+
+  handlePlayerError(playerName: string) {};
   
   render () {
 
     const {queue, players} = this.state;
 
+    debugger;
+
     let player_a = 
       <ReactPlayer 
-        url={players["a"].url}
-        playing={players["a"].isPlaying}
         loop={false}
         controls={false}
         volume={1}
         muted={false}
         playbackRate={1}
-        onReady={this.handlePlayerReady("a")}
-        onStart={this.handlePlayerStart("a")}
-        onPlay={this.handlePlayerPlaying("a")}
-        onProgress={this.handlePlayerProgress("a")}
-        onDuration={this.handlePlayerDuration("a")}
-        onPause={this.handlePlayerPaused("a")}
-        onBuffer={this.handlePlayerBuffering("a")}
-        onEnded={this.handlePlayerEnded("a")}
-        onError={this.handlePlayerError("a")} />;
+        onReady={this.handlePlayerReady.bind(this, "a")}
+        onStart={this.handlePlayerStart.bind(this, "a")}
+        onPlay={this.handlePlayerPlaying.bind(this, "a")}
+        onProgress={this.handlePlayerProgress.bind(this, "a")}
+        onDuration={this.handlePlayerDuration.bind(this, "a")}
+        onPause={this.handlePlayerPaused.bind(this, "a")}
+        onBuffer={this.handlePlayerBuffering.bind(this, "a")}
+        onEnded={this.handlePlayerEnded.bind(this, "a")}
+        onError={this.handlePlayerError.bind(this, "a")} />;
 
     return (
       <div>
         {player_a}
-        {player_b}
       </div>
     );
   }
