@@ -1,18 +1,51 @@
 // @flow
 
 class AudioPlayer {
+  name: string;
+  elapsed: number;
+  maxPlaybackDuration: number;
+  fadeTime: number;
+  isPlaying: boolean;
+  previewUrl: string;
+  volume: number;
+  fadeSmoothness: number;
   
   constructor(name: string) {
-    name = name;
+    this.name = name;
+    this.elapsed = 0;
+    this.maxPlaybackDuration = 30; 
+    this.fadeTime = 3;
+    this.isPlaying = false;
+    this.previewUrl = '';
+    this.volume = 0;
+    this.fadeSmoothness = 4;
   };
 
-  elapsed: number = 0;
-  maxPlaybackDuration: number = 30; 
-  fadeTime: number = 3;
-  isPlaying: boolean = false;
-  previewUrl: string = '';
-  volume: number = 0;
 
+  fadeVolume(direction: string) {
+
+    let fadeTimeMilliseconds = this.fadeTime * 1000;                                // 3000
+    let fadeSmoothnessMilliseconds = 1000 / this.fadeSmoothness;                    // 250
+    let numOfVolumeIncrements = fadeTimeMilliseconds / fadeSmoothnessMilliseconds;  // 3000 / 250 = 12
+    let volumeStepSize = Math.ceil10(1 / numOfVolumeIncrements, -2);                // 0.083 rounded up to 0.09
+    let count = 0;
+
+    setInterval(() => {
+      if(direction === "up" && this.volume <= 0) 
+        { this.volume += volumeStepSize; }
+      else if (direction === "down" && this.volume >= 1) 
+        { this.volume -= volumeStepSize; }
+      else 
+        { console.error("Volume change error. Vol = ", this.volume); }
+
+      console.log(`Volume of ${this.name} is ${this.volume} @ inc ${count}`);
+
+      count++;
+
+    }, fadeSmoothnessMilliseconds);
+  };
+
+  
   get isPlaying(): boolean {
     return this.isPlaying;
   };

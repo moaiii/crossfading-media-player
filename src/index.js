@@ -34,7 +34,7 @@ class CrossfadingMediaPlayer extends Component<Props, State> {
     let players: { any: AudioPlayer } = {};
 
     let player_a: AudioPlayer = new AudioPlayer("a");
-    let player_b: AudioPlayer = new AudioPlayer("a");
+    let player_b: AudioPlayer = new AudioPlayer("b");
 
     let players.a: AudioPlayer = player_a;
     let players.b: AudioPlayer = player_b;
@@ -42,6 +42,15 @@ class CrossfadingMediaPlayer extends Component<Props, State> {
     this.setState({
       players: players
     });
+  };
+
+  /**
+   * Check that the player is nearing the end of the preview 
+   * if so, fade the volume down and bring in the other player
+   * @param {string} playerId 
+   */
+  handlePlayerDuration(playerId: string) {
+
   };
   
   render () {
@@ -57,15 +66,15 @@ class CrossfadingMediaPlayer extends Component<Props, State> {
         volume={1}
         muted={false}
         playbackRate={1}
-        onReady={this.playerReady("a")}
-        onStart={this.playerStart("a")}
-        onPlay={this.playerPlaying("a")}
-        onProgress={this.playerProgress("a")}
-        onDuration={this.playerDuration("a")}
-        onPause={this.playerPaused("a")}
-        onBuffer={this.playerBuffering("a")}
-        onEnded={this.playerEnded("a")}
-        onError={this.playerError("a")} />;
+        onReady={this.handlePlayerReady("a")}
+        onStart={this.handlePlayerStart("a")}
+        onPlay={this.handlePlayerPlaying("a")}
+        onProgress={this.handlePlayerProgress("a")}
+        onDuration={this.handlePlayerDuration("a")}
+        onPause={this.handlePlayerPaused("a")}
+        onBuffer={this.handlePlayerBuffering("a")}
+        onEnded={this.handlePlayerEnded("a")}
+        onError={this.handlePlayerError("a")} />;
 
     return (
       <div>
